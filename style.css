@@ -17,6 +17,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -48,13 +49,9 @@ a {
     color: var(--accent-orange);
 }
 
-/* Highlight Text (Ex-links) */
 .highlight-span {
     color: var(--link-blue);
-    /* Same color as links */
     font-weight: 700;
-    /* Optional: text-decoration: underline; if user wants them to look exactly like links but not be clickable, 
-       but usually 'bold color' is enough. User asked for "negrito em cor destaque" */
 }
 
 /* Hero Section */
@@ -163,158 +160,229 @@ a {
     opacity: 0.8;
 }
 
-/* Timeline S-Curve Styles */
+/* --- REDESIGNED TIMELINE SECTION --- */
 .section-timeline {
     position: relative;
-    padding: 4rem 2rem;
-    overflow: hidden;
-    background-color: #0b1118;
+    background-color: #0d1b2a;
+    /* Deep dark blue for contrast */
     color: white;
+    padding: 6rem 1rem;
+    overflow: hidden;
 }
 
 .timeline-visual-container {
     position: relative;
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 2rem 0;
 }
 
 .section-title-wrapper {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    margin-bottom: 4rem;
+    margin-bottom: 6rem;
+    justify-content: center;
+    /* Center title */
+    text-align: center;
 }
 
 .section-title-wrapper h2 {
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: 2.5rem;
+    color: white;
 }
 
-/* Base Grid for Items */
-/* Desktop: 2 Columns */
+/* The Grid holding the items */
 .timeline-items-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(3, 1fr);
-    row-gap: 6rem;
-    /* Vertical space */
-    column-gap: 5rem;
-    /* Horizontal space */
+    /* 2 Wide Columns */
+    grid-template-rows: repeat(3, 200px);
+    /* Fixed height rows for easier S-curve alignment */
+    column-gap: 100px;
+    row-gap: 50px;
     position: relative;
     z-index: 2;
+    padding: 20px 0;
+    margin-left: 50px;
+    /* Offset for better centering with text */
+    margin-right: 50px;
 }
 
-/* Item Positioning */
+/* 
+   SVG Track Logic:
+   Coordinates for centers based on a 100x100 viewbox 
+   Top-Left (Item 1): 20, 15
+   Top-Right (Item 2): 80, 15
+   Mid-Right (Item 3): 80, 50
+   Mid-Left (Item 4): 20, 50
+   Low-Left (Item 5): 20, 85
+   Low-Right (Item 6): 80, 85
+*/
+.snake-track {
+    position: absolute;
+    top: 100px;
+    /* Adjust based on title margin */
+    left: 0;
+    width: 100%;
+    height: 700px;
+    /* Approximate height of the grid section */
+    z-index: 1;
+    pointer-events: none;
+    /* We use a encoded SVG directly here */
+    background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 100 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' style='stop-color:%2300C2FF;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%232D9CDB;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M 25,16 H 75 Q 85,16 85,33 V 35 Q 85,51 75,51 H 25 Q 15,51 15,67 V 69 Q 15,85 25,85 H 85' fill='none' stroke='url(%23grad1)' stroke-width='6' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    /* We add a shadow to the track */
+    filter: drop-shadow(0 0 10px rgba(0, 194, 255, 0.4));
+}
+
 .t-item {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    align-items: center;
+    /* Center align everything relative to the point */
+    text-align: center;
     position: relative;
-    min-height: 150px;
+    /* Adjust offsets to align overlapping the SVG line points */
+    transform: translateY(-20px);
 }
 
-/* Specific Positions */
+/* Manual Adjustments for Snake Order */
 .item-1 {
     grid-column: 1;
     grid-row: 1;
-    text-align: left;
     align-items: flex-start;
+    text-align: left;
+    padding-left: 60px;
 }
 
 .item-2 {
     grid-column: 2;
     grid-row: 1;
-    text-align: left;
-    align-items: flex-start;
+    align-items: flex-end;
+    text-align: right;
+    padding-right: 60px;
 }
 
+/* Second Row is Reversed Flow logic: 3 (right) -> 4 (left) */
 .item-3 {
     grid-column: 2;
     grid-row: 2;
-    text-align: left;
-    align-items: flex-start;
+    align-items: flex-end;
+    text-align: right;
+    padding-right: 60px;
 }
 
 .item-4 {
     grid-column: 1;
     grid-row: 2;
-    text-align: left;
     align-items: flex-start;
+    text-align: left;
+    padding-left: 60px;
 }
 
+/* Third Row Flow: 5 (left) -> 6 (right) */
 .item-5 {
     grid-column: 1;
     grid-row: 3;
-    text-align: left;
     align-items: flex-start;
+    text-align: left;
+    padding-left: 60px;
 }
 
 .item-6 {
     grid-column: 2;
     grid-row: 3;
-    text-align: left;
-    align-items: flex-start;
+    align-items: flex-end;
+    text-align: right;
+    padding-right: 60px;
 }
 
-/* Icons */
+
 .t-icon {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     margin-bottom: 1rem;
-    background: #0d1b2a;
-    width: 60px;
-    height: 60px;
+    /* Create a distinct circle for the icon */
+    background: #1a1a1a;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    border: 3px solid #2D9CDB;
+    border: 4px solid #00C2FF;
     z-index: 5;
-    position: relative;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    /* Position icon absolutely relative to grid cell to hit the line? 
+       No, let's keep flow. The styling above tries to push text away.
+    */
 }
 
-.item-2.current .t-icon {
-    border-color: var(--accent-orange);
-    box-shadow: 0 0 20px rgba(242, 153, 74, 0.6);
-    background: #2a1b12;
+/* Icon positioning override to sit ON the line */
+/* 
+   The grid columns are wide.
+   Item 1 (Left) -> Icon needs to be somewhat centered content-wise or aligned to line.
+   The line starts at 25% width. Item column is 0-50%. Center of Item col is 25%.
+   Perfect.
+   Item 2 (Right) -> Column 50-100%. Center is 75%. Line ends 75%.
+   Perfect.
+   
+   So align-items: center is actually best for the Icon, but text needs to go Left/Right?
+   The user example shows text BELOW the icon.
+*/
+
+.t-item {
+    align-items: center !important;
+    text-align: center !important;
+    padding: 0 !important;
+    /* Reset padding override */
 }
+
+/* Adjust Row 2 order visually */
+/* Wait, in 2-col visual:
+   Row 1: 1 (Left), 2 (Right)
+   Row 2: 4 (Left), 3 (Right) -- But HTML order is 3, 4?
+   In HTML I put unique classes item-3, item-4.
+   Let's check HTML.
+   Item-3 is "System Design".
+   Item-4 is "Reference Check".
+   User image flow:
+   1 (Left) -> 2 (Right)
+   |
+   V
+   3 (Right/System Design) -> 4 (Left/Ref Check) -- Wait, the image shows 3 is System Design.
+   |
+   V
+   5 (Left) -> 6 (Right)
+
+   So visually:
+   Grid (1,1) = Intro
+   Grid (1,2) = LiveCoding
+   Grid (2,2) = System Design (Right side, directly below LiveCoding)
+   Grid (2,1) = Reference Check (Left side, directly below Intro)
+   Grid (3,1) = Cultural (Left side, below Ref Check)
+   Grid (3,2) = Proposta (Right side, below System Design)
+   
+   This matches the snake.
+*/
+
 
 .t-content h3 {
-    font-size: 1.25rem;
-    color: white;
-    margin-bottom: 0.5rem;
+    margin-top: 15px;
+    font-size: 1.3rem;
     font-weight: 700;
-}
-
-.item-2.current h3 {
-    color: var(--accent-orange);
+    color: white;
 }
 
 .t-content p {
     font-size: 0.95rem;
-    color: #a0aab5;
-    line-height: 1.5;
-    max-width: 350px;
+    color: #b0b0b0;
+    margin-top: 5px;
+    max-width: 300px;
 }
 
-/* SNAKE TRACK BACKGROUND */
-.snake-track {
-    position: absolute;
-    top: 30px;
-    left: 31px;
-    right: auto;
-    width: calc(100% - 62px);
-    bottom: 0;
-    z-index: 1;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 100 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 0,5 L 100,5 C 110,5 110,50 100,50 L 0,50 C -10,50 -10,95 0,95 L 100,95' fill='none' stroke='%23005A8D' stroke-width='4' stroke-linecap='round' vector-effect='non-scaling-stroke' /%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-size: 100% 85%;
-    height: 100%;
-    opacity: 0.5;
-}
+
 
 /* Headers (Cultural & Tech) */
 .cultural-header,
@@ -362,7 +430,6 @@ a {
     background-size: 10px 10px;
     opacity: 0.6;
 }
-
 
 /* Content Blocks & Global Content styles */
 .content-container {
@@ -682,30 +749,43 @@ a {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
         row-gap: 3rem;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .snake-track {
-        background-image: none;
+        display: none;
+    }
+
+    /* Mobile vertical line */
+    .timeline-visual-container::before {
+        content: '';
+        position: absolute;
+        top: 100px;
+        left: 28px;
+        /* Matches icon center roughly */
         width: 4px;
-        background-color: #005A8D;
-        left: 38px;
-        top: 30px;
-        height: calc(100% - 100px);
+        height: calc(100% - 150px);
+        background: #00C2FF;
+        z-index: 0;
     }
 
     .t-item {
         grid-column: 1 !important;
         grid-row: auto !important;
         flex-direction: row;
-        align-items: flex-start;
-        text-align: left;
-        padding-left: 0;
+        align-items: flex-start !important;
+        text-align: left !important;
+        padding-left: 0 !important;
     }
 
     .t-icon {
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
         margin-right: 1.5rem;
         margin-bottom: 0;
-        min-width: 60px;
+        font-size: 1.8rem;
     }
 
     .cultural-header,
@@ -715,5 +795,33 @@ a {
 
     .dotted-pattern {
         display: none;
+    }
+}
+
+.timeline-image-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem;
+}
+
+.timeline-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .timeline-image-wrapper {
+        padding: 0;
+    }
+
+    /* Remove old mobile vertical line if it still exists from other rules not fully deleted yet, 
+       though we replaced the HTML structure so the selectors won't match anyway. 
+       Use this space to ensure image looks good on mobile. */
+    .timeline-img {
+        border-radius: 4px;
     }
 }
