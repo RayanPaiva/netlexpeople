@@ -11,6 +11,10 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for YouTube Icon (using CDN for simplicity) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -37,44 +41,60 @@
 
     <!-- Timeline Section (New) -->
     <section class="section-timeline content-block">
-        <div class="container relative">
-            <div class="section-title-wrapper">
+        <div class="timeline-visual-container">
+            <div class="section-title-wrapper" style="margin-bottom: 3rem; color: white;">
                 <span class="dash"></span>
-                <h2>Quais são as etapas do processo seletivo da netLex?</h2>
+                <h2 style="font-family: var(--font-heading);">Quais são as etapas do processo seletivo da netLex?</h2>
             </div>
 
-            <div class="timeline-container">
-                <!-- S-curve SVG line could go here, for now using CSS/pseudo elements for simplicity -->
-                <!-- Ideally a robust SVG path is best for the S-shape, simplified here with grid -->
-                <div class="timeline-grid">
-                    <div class="timeline-step step-1">
-                        <div class="step-icon">👋</div>
+            <!-- S-Curve Background SVG Track -->
+            <div class="snake-track"></div>
+
+            <div class="timeline-items-grid">
+                <!-- Row 1 Items -->
+                <div class="t-item item-1">
+                    <div class="t-icon">👋</div>
+                    <div class="t-content">
                         <h3>1. Intro</h3>
                         <p>Esse foi o bate papo com people, onde conhecemos mais de você e da sua trajetória
                             profissional!</p>
                     </div>
-                    <div class="timeline-step step-2 current">
-                        <div class="step-icon">💻</div>
+                </div>
+                <div class="t-item item-2 current">
+                    <div class="t-icon">💻</div>
+                    <div class="t-content">
                         <h3>2. LiveCoding (você está aqui!)</h3>
                         <p>Vamos aprofundar os seus conhecimentos técnicos em código e programação</p>
                     </div>
-                    <div class="timeline-step step-3">
-                        <div class="step-icon">⚙️</div>
+                </div>
+
+                <!-- Row 2 Items -->
+                <div class="t-item item-3">
+                    <div class="t-icon">⚙️</div>
+                    <div class="t-content">
                         <h3>3. System Design</h3>
                         <p>Vamos aprofundar os seus conhecimentos em arquitetura de software</p>
                     </div>
-                    <div class="timeline-step step-4">
-                        <div class="step-icon">📝</div>
+                </div>
+                <div class="t-item item-4">
+                    <div class="t-icon">📝</div>
+                    <div class="t-content">
                         <h3>4. Reference check</h3>
                         <p>Vamos conversar com suas referências</p>
                     </div>
-                    <div class="timeline-step step-5">
-                        <div class="step-icon">🤝</div>
+                </div>
+
+                <!-- Row 3 Items -->
+                <div class="t-item item-5">
+                    <div class="t-icon">🤝</div>
+                    <div class="t-content">
                         <h3>5. Cultural</h3>
                         <p>Momento de conhecer mais um pouco sobre você e ver se temos um fit cultural</p>
                     </div>
-                    <div class="timeline-step step-6">
-                        <div class="step-icon">🚀</div>
+                </div>
+                <div class="t-item item-6">
+                    <div class="t-icon">🚀</div>
+                    <div class="t-content">
                         <h3>6. Proposta</h3>
                         <p>Vem ser netLex!</p>
                     </div>
@@ -98,10 +118,11 @@
                 Queremos que você se sinta confortável e aproveite essa experiência ao máximo!
             </p>
             <p>
-                A etapa técnica é dividida em duas partes: <a href="#" class="highlight-link">live coding</a> e <a
-                    href="#" class="highlight-link">system design</a>, sendo que o system design é feito em outro dia
-                após a aprovação no live coding. Ambas etapas são realizadas através do <a href="#"
-                    class="highlight-link">Hacker Rank</a> e você receberá um link no invite para poder entrar.
+                A etapa técnica é dividida em duas partes: <span class="highlight-span">live coding</span> e
+                <span class="highlight-span">system design</span>, sendo que o system design é feito em outro dia após a
+                aprovação no live coding. Ambas etapas são realizadas através do
+                <a href="#" class="highlight-link"><!-- INSIRA O LINK DO HACKER RANK AQUI -->Hacker Rank</a> e você
+                receberá um link no invite para poder entrar.
             </p>
         </div>
     </section>
@@ -120,10 +141,11 @@
             <div class="two-col-grid">
                 <div class="text-col">
                     <p>
-                        Essa é a parte prática, onde você vai resolver um problema utilizando <a href="#"
-                            class="highlight-link">algoritmos e estrutura de dados</a>. Queremos ver como você organiza
-                        o raciocínio, <a href="#" class="highlight-link">estrutura o código</a> e <a href="#"
-                            class="highlight-link">explica suas escolhas</a>.
+                        Essa é a parte prática, onde você vai resolver um problema utilizando <span
+                            class="highlight-span">algoritmos e estrutura de dados</span>. Queremos ver como você
+                        organiza o raciocínio,
+                        <span class="highlight-span">estrutura o código</span> e
+                        <span class="highlight-span">explica suas escolhas</span>.
                     </p>
                     <p>
                         <strong>Mais importante que acertar de primeira, é mostrar clareza e consistência no
@@ -135,7 +157,39 @@
                         <li>A proposta avalia raciocínio lógico, capacidade de resolução de problemas e aderência a boas
                             práticas de código (como modularidade, simplicidade e legibilidade).</li>
                     </ul>
+
+                    <!-- NEW TIPS SECTION -->
+                    <div class="tips-section">
+                        <span class="tips-title">Dicas para praticar</span>
+                        <p style="margin-top: 1rem;">
+                            <span class="tip-arrow">➔</span> Revise <strong style="color:white;">algoritmos e estrutura
+                                de dados</strong> e resolva alguns problemas envolvendo strings, arrays, grafos,
+                            ordenação, árvores, etc;
+                        </p>
+                        <p>
+                            <span class="tip-arrow">➔</span> Revise e pratique <strong style="color:white;">boas
+                                práticas de engenharia de software</strong>, incluindo SOLID, Clean Code, DRY e POO.
+                        </p>
+                        <p>
+                            <span class="tip-arrow">➔</span> Dica de conteúdo adicional online para se preparar para o
+                            Live Coding (conteúdo em inglês com legendas).
+                        </p>
+
+                        <div class="youtube-list">
+                            <a href="#" class="yt-link-chip">
+                                <span class="yt-icon"><i class="fa-brands fa-youtube"></i></span>
+                                <!-- INSIRA O LINK DO YOUTUBE AQUI -->
+                                How to Start LeetCode from ZERO in 2025
+                            </a>
+                            <a href="#" class="yt-link-chip">
+                                <span class="yt-icon"><i class="fa-brands fa-youtube"></i></span>
+                                <!-- INSIRA O LINK DO YOUTUBE AQUI -->
+                                How I Mastered Data Structures and Algorithms
+                            </a>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="card-col">
                     <div class="white-card time-card">
                         <div class="clock-icon">🕒</div>
@@ -168,16 +222,33 @@
                         como customização e segurança.
                     </p>
                     <p>
-                        Serão avaliadas <a href="#" class="highlight-link">clareza na comunicação</a>, <a href="#"
-                            class="highlight-link">justificativas das escolhas técnicas</a> e <a href="#"
-                            class="highlight-link">capacidade de resolver problemas</a>. Recomendamos que você faça
-                        perguntas sempre que necessário e, a partir dos inputs dos entrevistadores, vá <a href="#"
-                            class="highlight-link">aprofundando em sua análise e solução</a>. Dê o máximo de detalhes
-                        possível!
+                        Serão avaliadas <span class="highlight-span">clareza na comunicação</span>,
+                        <span class="highlight-span">justificativas das escolhas técnicas</span> e
+                        <span class="highlight-span">capacidade de resolver problemas</span>. Recomendamos que você faça
+                        perguntas sempre que necessário e, a partir dos inputs dos entrevistadores, vá
+                        <span class="highlight-span">aprofundando em sua análise e solução</span>. Dê o máximo de
+                        detalhes possível!
                     </p>
                     <p>
                         Essa etapa tem duração de 45min a 1h ⏳
                     </p>
+
+                    <!-- NEW TIPS SECTION SYSTEM DESIGN -->
+                    <div style="margin-top: 2rem;">
+                        <p>
+                            <span class="tip-arrow">➔</span> Dica de conteúdo adicional online para se preparar para o
+                            System Design (conteúdo em inglês com legendas).
+                        </p>
+
+                        <div class="youtube-list">
+                            <a href="#" class="yt-link-chip">
+                                <span class="yt-icon"><i class="fa-brands fa-youtube"></i></span>
+                                <!-- INSIRA O LINK DO YOUTUBE AQUI -->
+                                How I Mastered System Design Interviews
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="card-col">
                     <div class="white-card">
@@ -198,7 +269,7 @@
         </div>
     </section>
 
-    <!-- Cultural Header Section (Existing) -->
+    <!-- Cultural Header Section -->
     <section class="cultural-header">
         <div class="cultural-overlay"></div>
         <div class="container relative">
@@ -207,13 +278,13 @@
         </div>
     </section>
 
-    <!-- Main Content (Existing Cultural) -->
+    <!-- Main Content -->
     <main class="content-container">
 
         <!-- Intro Section -->
         <section class="content-block intro-block">
             <p>
-                A nossa Entrevista Cultural é uma parte <a href="#" class="highlight-link">essencial</a> do processo, e
+                A nossa Entrevista Cultural é uma parte <span class="highlight-span">essencial</span> do processo, e
                 este guia ajudará você a se preparar para essa etapa decisiva. Em vez de fornecer um passo a passo,
                 queremos desafiá-lo a refletir sobre sua trajetória, seu crescimento profissional e como você se alinha
                 com os valores da nossa empresa. Essa não é apenas uma avaliação, mas uma oportunidade de mostrar sua
@@ -227,7 +298,7 @@
                 <div class="text-col">
                     <h3 class="orange-title">Dominando seu Storytelling</h3>
                     <p>
-                        Você já ouviu falar em <a href="#" class="highlight-link">Storytelling</a>? Storytelling é o
+                        Você já ouviu falar em <span class="highlight-span">Storytelling</span>? Storytelling é o
                         processo de usar narrativas para compartilhar conhecimento, capturar interesse ou influenciar
                         emoções e comportamentos.
                     </p>
@@ -237,12 +308,12 @@
                     </p>
                     <p>
                         Pense nos desafios profissionais mais significativos, nos seus aprendizados e conquistas. Foque
-                        em clareza e relevância e tente utilizar a <a href="#" class="highlight-link">Metodologia
-                            Star</a> para te ajudar a organizar seus pensamentos 🤓
+                        em clareza e relevância e tente utilizar a <span class="highlight-span">Metodologia Star</span>
+                        para te ajudar a organizar seus pensamentos 🤓
                     </p>
                     <p>
                         Como <strong>dica</strong> para nossa etapa, trabalhe o seu storytelling para se apresentar e
-                        contar a sua história de uma maneira <a href="#" class="highlight-link">clara e objetiva</a>,
+                        contar a sua história de uma maneira <span class="highlight-span">clara e objetiva</span>,
                         contemplando os pontos mais importantes da sua carreira, destacando seus desafios técnicos e a
                         complexidade deles, junto com as suas responsabilidades, resultados e aprendizados em cada
                         empresa que você já passou.
@@ -285,11 +356,11 @@
                 Agora vamos a <strong>dica de ouro</strong> 💡
             </p>
             <p>
-                Acesse nossa <a href="#" class="highlight-link">página de carreiras</a> para conhecer mais sobre os
-                nossos pilares de cultura e valores. Estude-os com atenção e reflita sobre como eles se conectam à sua
-                trajetória profissional. Mostrar que você compreende e se engaja com nossa cultura será um grande
-                diferencial. Durante a entrevista, integre suas experiências aos nossos pilares para demonstrar, de
-                maneira prática, como você se identifica com eles.
+                Acesse nossa <a href="#" class="highlight-link"><!-- INSIRA O LINK CARREIRAS AQUI -->página de
+                    carreiras</a> para conhecer mais sobre os nossos pilares de cultura e valores. Estude-os com atenção
+                e reflita sobre como eles se conectam à sua trajetória profissional. Mostrar que você compreende e se
+                engaja com nossa cultura será um grande diferencial. Durante a entrevista, integre suas experiências aos
+                nossos pilares para demonstrar, de maneira prática, como você se identifica com eles.
             </p>
             <p>
                 Aproveite para fazer muitas perguntas, afinal, você também está selecionando o netLex como um bom

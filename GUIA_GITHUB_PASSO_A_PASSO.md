@@ -75,3 +75,17 @@ Agora vamos conectar seu computador ao GitHub.
    "Your site is live at..." com o link do seu site!
 
 ðŸŽ‰ **ParabÃ©ns! Seu site estÃ¡ online.**
+
+## ?? Qual será o link do meu site?
+
+Depois de configurar o GitHub Pages (nos passos acima), o link do seu site seguirá este padrão:
+
+https://SEU-NOMEDEUSUARIO.github.io/netlex-landing-page/
+
+### Onde encontrar o link clicável:
+1. No seu repositório no GitHub, clique na aba **Settings** (Configurações).
+2. No menu lateral esquerdo, clique em **Pages**.
+3. No topo dessa página, você verá uma caixa (geralmente verde) com a mensagem:
+   **'Your site is live at...'** seguido do link.
+
+Basta clicar nesse link para abrir sua landing page! ??

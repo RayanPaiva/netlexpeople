@@ -48,6 +48,15 @@ a {
     color: var(--accent-orange);
 }
 
+/* Highlight Text (Ex-links) */
+.highlight-span {
+    color: var(--link-blue);
+    /* Same color as links */
+    font-weight: 700;
+    /* Optional: text-decoration: underline; if user wants them to look exactly like links but not be clickable, 
+       but usually 'bold color' is enough. User asked for "negrito em cor destaque" */
+}
+
 /* Hero Section */
 .hero {
     position: relative;
@@ -154,12 +163,20 @@ a {
     opacity: 0.8;
 }
 
-/* Timeline Section */
+/* Timeline S-Curve Styles */
 .section-timeline {
-    padding: 5rem 2rem;
-    background-color: #0d1b2a;
-    /* Dark blue tone */
+    position: relative;
+    padding: 4rem 2rem;
+    overflow: hidden;
+    background-color: #0b1118;
     color: white;
+}
+
+.timeline-visual-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 0;
 }
 
 .section-title-wrapper {
@@ -174,57 +191,130 @@ a {
     font-size: 2rem;
 }
 
-.timeline-container {
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.timeline-grid {
+/* Base Grid for Items */
+/* Desktop: 2 Columns */
+.timeline-items-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    row-gap: 6rem;
+    /* Vertical space */
+    column-gap: 5rem;
+    /* Horizontal space */
+    position: relative;
+    z-index: 2;
 }
 
-.timeline-step {
-    background: rgba(255, 255, 255, 0.05);
-    /* Glass-like */
-    padding: 1.5rem;
-    border-radius: 8px;
-    border-left: 4px solid var(--accent-blue);
-    transition: transform 0.3s ease, background 0.3s ease;
+/* Item Positioning */
+.t-item {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    position: relative;
+    min-height: 150px;
 }
 
-.timeline-step:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.1);
+/* Specific Positions */
+.item-1 {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: left;
+    align-items: flex-start;
 }
 
-.timeline-step.current {
-    border-left-color: var(--accent-orange);
-    background: rgba(242, 153, 74, 0.1);
+.item-2 {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+    align-items: flex-start;
 }
 
-.step-icon {
-    font-size: 2rem;
+.item-3 {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: left;
+    align-items: flex-start;
+}
+
+.item-4 {
+    grid-column: 1;
+    grid-row: 2;
+    text-align: left;
+    align-items: flex-start;
+}
+
+.item-5 {
+    grid-column: 1;
+    grid-row: 3;
+    text-align: left;
+    align-items: flex-start;
+}
+
+.item-6 {
+    grid-column: 2;
+    grid-row: 3;
+    text-align: left;
+    align-items: flex-start;
+}
+
+/* Icons */
+.t-icon {
+    font-size: 1.8rem;
     margin-bottom: 1rem;
+    background: #0d1b2a;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 3px solid #2D9CDB;
+    z-index: 5;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.timeline-step h3 {
-    font-weight: 700;
-    color: var(--link-blue);
+.item-2.current .t-icon {
+    border-color: var(--accent-orange);
+    box-shadow: 0 0 20px rgba(242, 153, 74, 0.6);
+    background: #2a1b12;
+}
+
+.t-content h3 {
+    font-size: 1.25rem;
+    color: white;
     margin-bottom: 0.5rem;
+    font-weight: 700;
 }
 
-.timeline-step.current h3 {
+.item-2.current h3 {
     color: var(--accent-orange);
 }
 
-.timeline-step p {
+.t-content p {
     font-size: 0.95rem;
-    color: #ddd;
+    color: #a0aab5;
     line-height: 1.5;
+    max-width: 350px;
 }
 
+/* SNAKE TRACK BACKGROUND */
+.snake-track {
+    position: absolute;
+    top: 30px;
+    left: 31px;
+    right: auto;
+    width: calc(100% - 62px);
+    bottom: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 100 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 0,5 L 100,5 C 110,5 110,50 100,50 L 0,50 C -10,50 -10,95 0,95 L 100,95' fill='none' stroke='%23005A8D' stroke-width='4' stroke-linecap='round' vector-effect='non-scaling-stroke' /%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 100% 85%;
+    height: 100%;
+    opacity: 0.5;
+}
 
 /* Headers (Cultural & Tech) */
 .cultural-header,
@@ -232,20 +322,14 @@ a {
     background-position: center 30%;
     background-size: cover;
     padding: 3rem 4rem;
-    /* Adjusted padding */
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
     overflow: hidden;
     margin-bottom: 3rem;
-    /* Space after header */
 }
 
 .cultural-header {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('assets/hero_bg.png');
-}
-
-.cultural-overlay {
-    /* Kept for potential overlay use */
 }
 
 .section-tag {
@@ -325,7 +409,6 @@ a {
 
 .orange-title.full-width {
     display: flex;
-    /* Or block */
     width: 100%;
 }
 
@@ -365,6 +448,64 @@ a {
     top: 5px;
 }
 
+/* Extra Tips Section Styles */
+.tips-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tips-title {
+    background-color: var(--accent-orange);
+    color: white;
+    font-weight: 700;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.youtube-list {
+    margin-left: 20px;
+    margin-top: 0.5rem;
+}
+
+.yt-link-chip {
+    display: flex;
+    align-items: center;
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    width: fit-content;
+    transition: background 0.3s;
+}
+
+.yt-link-chip:hover {
+    background-color: #3e3e3e;
+    color: white;
+}
+
+.yt-icon {
+    color: #FF0000;
+    /* YouTube Red */
+    margin-right: 10px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+
+.tip-arrow {
+    margin-right: 8px;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+
 /* Cards */
 .two-col-grid {
     display: grid;
@@ -391,7 +532,6 @@ a {
 .card-header {
     display: flex;
     justify-content: flex-end;
-    /* right align by default for secret */
     margin-bottom: 1rem;
 }
 
@@ -430,7 +570,6 @@ a {
 .time-card {
     text-align: center;
     background: white;
-    /* can be white */
     padding: 3rem 2rem;
     display: flex;
     flex-direction: column;
@@ -483,7 +622,6 @@ a {
     left: 0;
     top: 2px;
     background: #6FCF97;
-    /* Green check */
     color: white;
     width: 20px;
     height: 20px;
@@ -540,8 +678,34 @@ a {
         grid-template-columns: 1fr;
     }
 
-    .timeline-grid {
+    .timeline-items-grid {
         grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        row-gap: 3rem;
+    }
+
+    .snake-track {
+        background-image: none;
+        width: 4px;
+        background-color: #005A8D;
+        left: 38px;
+        top: 30px;
+        height: calc(100% - 100px);
+    }
+
+    .t-item {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+        padding-left: 0;
+    }
+
+    .t-icon {
+        margin-right: 1.5rem;
+        margin-bottom: 0;
+        min-width: 60px;
     }
 
     .cultural-header,
@@ -551,9 +715,5 @@ a {
 
     .dotted-pattern {
         display: none;
-    }
-
-    .timeline-step {
-        /* On mobile, steps are just stacked cards */
     }
 }
